@@ -1,0 +1,43 @@
+// Variables
+$colorPri: rgb(184, 114, 9);
+$colorSec:rgb(32, 207, 230);
+$colorTer:rgb(29, 5, 5);
+
+//sobreescribiendo estilos de bootstrap
+.bg-primary {background-color: $colorPri !important;}
+.text-primary{color: $colorPri !important;}
+.btn-primary{
+    background-color: $colorPri !important;
+    border-color: darken($colorPri, 20%) !important;
+}
+.btn-primary:hover{
+    background-color: darken($colorPri, 10%) !important;
+}
+.btn-primary:focus{
+    background-color: darken($colorPri, 10%) !important;
+    box-shadow: 0 0 0 0.2rem rgba($colorPri, 0.5) !important;
+}
+.btn-primary:active{
+    background-color: darken($colorPri, 20%) !important;
+    border-color: darken($colorPri, 30%) !important;
+}
+
+// Estilos de Pagina
+html{font-size: 14px;}
+body{
+    background: rgb(123, 224, 123);
+    color:$colorTer;
+    font-family: 'Nunito', sans-serif;
+}
+.card:hover{box-shadow: 0 0 15px green;}
+
+// Querys
+@media(min-width: 768px){
+    html{font-size: 16px;}
+}
+@media(min-width: 992px){
+    html{font-size: 18px;}
+}
+@media(min-width: 1200px){
+    html{font-size: 20px;}
+}

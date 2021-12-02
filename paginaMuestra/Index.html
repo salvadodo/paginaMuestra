@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link type="image/x-icon" rel="shortcut icon" href="images/logoMicasa.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,600;1,200;1,600&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/estilos.css">
+    <title>Mi casa</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md fixed-top">
+        <div class="container">
+            <a href="#" class="navbar-brand">
+                <img src="images/logoMicasa.png" alt="imagen de logo" width="30" height="30">
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#menu-principal"
+                    aria-controls="menu-principal" aria-expanded="false" aria-label="Desplegar menú de navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu-principal">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li class="nav-item"><a href="#acercade" class="nav-link">Acerca de</a></li>
+                    <li class="nav-item"><a href="#micasa" class="nav-link">Tipos de casa</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section id="inicio" class="micasa bg-primary mt-5 py-4 text-center text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <img src="images/logoMicasa.jpg" alt="logo mi casa" class="logomicasa img-fluid rounded mb-4">
+                    <p class="acercadetext h2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto eaque corrupti id ullam earum sint voluptas ea odio doloremque temporibus aliquid commodi pariatur quos explicabo iure molestias, quasi, nulla praesentium.</p>
+                    <p class="acercadesub h4 font-italic">Mi casa para todos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="acercade" class="acercade py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6"><img src="images/iniciocasa.jpg" alt="imagen de casa1" class="img-fluid mb-4"></div>
+                <div class="col-12 col-md-6 text-center">
+                    <h1 class="display-4 font-weight-bold text-primary">Acerca de Mi casa</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto eaque corrupti id ullam earum sint voluptas ea odio doloremque temporibus aliquid commodi pariatur quos explicabo iure molestias, quasi, nulla praesentium.</p>
+                    <a href="#" class="btn btn-primary btn-lg">Acerca de</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="micasa" class="tiposcasa py-4">
+        <div class="container text-center">
+            <h1 class="font-weight-bold text-primary">Tipos de Casa</h1>
+            <div class="row h4">
+                <div class="card mb-3 mb-lg-0 col-md-6 col-lg-3">
+                    <img class="card-img-top h-100" src="/images/Casas Pequeñas.jpg" alt="Imagen Casa 1">
+                    <div class="card-body"> Casas Pequeñas </div>
+                </div>
+                <div class="card mb-3 mb-lg-0 col-md-6 col-lg-3">
+                    <img class="card-img-top h-100" src="/images/Casas Medianas.jpg" alt="Imagen Casa 2">
+                    <div class="card-body"> Casas Medianas </div>
+                </div>
+                <div class="card mb-3 mb-lg-0 col-md-6 col-lg-3">
+                    <img class="card-img-top h-100" src="/images/Casas Grandes.jpg" alt="Imagen Casa 3">
+                    <div class="card-body"> Casas Grandes </div>
+                </div>
+                <div class="card mb-3 mb-lg-0 col-md-6 col-lg-3">
+                    <img class="card-img-top h-100" src="/images/Casas de Lujo.jpg" alt="Imagen Casa 4">
+                    <div class="card-body"> Casas de Lujo </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="formulario py-4">
+        <div class="cldatosCasa" id="iddatosCasa"></div>        
+        <!--<div class="cldatosCasa" id="iddatosCasa" onload="cargarReg()"></div>-->
+    </section>
+
+    <footer class="piedepagina bg-dark text-white text-center text-md-right">
+        <div class="container">
+            <p class="m-0 py-4">Copyright © 2021. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        //Forma 2
+        $(function () {
+            $("#iddatosCasa").show(function () {
+                //var a = $("#idnombre").val();
+                //var b = $("#idcorreo").val();
+                //var cadPass = "Nombre=" + a + "&Correo=" + b;
+                //var cadPass = JSON.stringify({ Nombre: a, Correo: b });
+                $.post({
+                    url: "WebService1.asmx/cargarRegistros",
+                    //data: '{Nombre: "' + $("#nombre").val() + '", Apellido: "' + $("#apellido").val() + '"}',
+                    //data: cadPass,
+                    //data: JSON.stringify(cadPass),
+                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                    //contentType: "text/ html; charset = utf - 8",
+                    //contentType: "application/json; charset=utf-8",
+                    //dataType: "json",
+                    dataType: "xml"
+                }).done(function (msg) {
+                    //$("#mostrar").html(msg.d);
+                    //console.log(msg);
+                    var datos = msg.getElementsByTagName("string")[0].firstChild.data;
+                    $("#iddatosCasa").html(datos);
+                    console.log(msg);
+                }).fail(manejarErrorAjax).always(function () {
+                });
+            });
+            function manejarErrorAjax(err) {
+                console.log(err.responseText);
+            }
+        })
+        ////Forma 3
+        //var respuesta = document.getElementById("iddatosCasa");
+        //function cargarReg() {
+        //    var xmlhttp;
+        //    if (window.XMLHttpRequest) {
+        //        xmlhttp = new XMLHttpRequest();
+        //    } else {
+        //        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        //    }
+        //    xmlhttp.onreadystatechange = function () {
+        //        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+        //            var datos = xmlhttp.responseXML;
+        //            var tablaDat = datos.getElementsByTagName("string")[0].firstChild.data;
+        //            respuesta.innerHTML = tablaDat;
+        //            console.log(xmlhttp);
+        //        }
+        //    }
+        //    xmlhttp.open("POST", "WebService1.asmx/cargarRegistros", true);
+        //    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+        //    //xmlhttp.setRequestHeader("Content-type", "application/json; charset=utf-8")
+        //    xmlhttp.send();
+        //}
+    </script>
+</body>
+</html>
