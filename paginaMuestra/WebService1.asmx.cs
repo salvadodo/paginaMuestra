@@ -24,8 +24,8 @@ namespace paginaMuestra
                 string res = "";
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "sp_selectallCasasInnerDueños";
-                //cmd.CommandText = "sp_selectcolumnsCasasInnerDueños";
+                cmd.CommandText = "sp_selectallDueñosInnerCasas";
+                //cmd.CommandText = "sp_selectcolumnsDueñosInnerCasas";
                 cmd.Connection = con; 
                 con.Open();
                 SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.Default);
