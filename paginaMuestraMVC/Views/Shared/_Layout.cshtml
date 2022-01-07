@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="image/x-icon" rel="shortcut icon" href="~/fonts/images/logoMicasa.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,600;1,200;1,600&display=swap" rel="stylesheet">
+    <title>@ViewBag.Title - Mi casa</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md fixed-top">
+        <div class="container">
+            <a href="#" class="navbar-brand">
+                <img src="~/fonts/images/logoMicasa.png" alt="imagen de logo" width="30" height="30">
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#menu-principal"
+                    aria-controls="menu-principal" aria-expanded="false" aria-label="Desplegar menú de navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu-principal">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">@Html.ActionLink("Inicio", "Index", "Home", null, new {@class="nav-link active", href = "#inicio" })</li>
+                    <li class="nav-item">@Html.ActionLink("Acerca de", "Index", "Home", null, new {@class="nav-link", href = "#acercade" })</li>
+                    <li class="nav-item">@Html.ActionLink("Tipos de casa", "Index", "Home", null, new {@class="nav-link", href = "#micasa" })</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+    <hr />
+
+    <footer class="piedepagina bg-dark text-white text-center text-md-right">
+        <div class="container">
+            <p class="m-0 py-4">&copy; @DateTime.Now.Year. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/paq/popper")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        //Forma 2
+        $(function () {
+            $("#iddatosCasa").show(function () {
+                //var a = $("#idnombre").val();
+                //var b = $("#idcorreo").val();
+                //var cadPass = "Nombre=" + a + "&Correo=" + b;
+                //var cadPass = JSON.stringify({ Nombre: a, Correo: b });
+                $.post({
+                    url: "HomeController.cs/Index",
+                    //data: '{Nombre: "' + $("#nombre").val() + '", Apellido: "' + $("#apellido").val() + '"}',
+                    //data: cadPass,
+                    //data: JSON.stringify(cadPass),
+                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                    //contentType: "text/ html; charset = utf - 8",
+                    //contentType: "application/json; charset=utf-8",
+                    //dataType: "json",
+                    dataType: "xml"
+                }).done(function (msg) {
+                    //$("#mostrar").html(msg.d);
+                    //console.log(msg);
+                    var datos = msg.getElementsByTagName("string")[0].firstChild.data;
+                    $("#iddatosCasa").html(datos);
+                    console.log(msg);
+                }).fail(manejarErrorAjax).always(function () {
+                });
+            });
+            function manejarErrorAjax(err) {
+                console.log(err.responseText);
+            }
+        })
+        ////Forma 3
+        //var respuesta = document.getElementById("iddatosCasa");
+        //function cargarReg() {
+        //    var xmlhttp;
+        //    if (window.XMLHttpRequest) {
+        //        xmlhttp = new XMLHttpRequest();
+        //    } else {
+        //        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        //    }
+        //    xmlhttp.onreadystatechange = function () {
+        //        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+        //            var datos = xmlhttp.responseXML;
+        //            var tablaDat = datos.getElementsByTagName("string")[0].firstChild.data;
+        //            respuesta.innerHTML = tablaDat;
+        //            console.log(xmlhttp);
+        //        }
+        //    }
+        //    xmlhttp.open("POST", "WebService1.asmx/cargarRegistros", true);
+        //    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+        //    //xmlhttp.setRequestHeader("Content-type", "application/json; charset=utf-8")
+        //    xmlhttp.send();
+        //}
+    </script>
+</body>
+</html>
