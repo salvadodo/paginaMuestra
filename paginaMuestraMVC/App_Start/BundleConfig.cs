@@ -9,7 +9,7 @@ namespace paginaMuestraMVC
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}..min.js"));
+                        "~/Scripts/jquery-3.6.0.min.js"));
 
             bundles.Add(new ScriptBundle("~/paq/popper").Include(
                 "~/Scripts/popper.min.js"));

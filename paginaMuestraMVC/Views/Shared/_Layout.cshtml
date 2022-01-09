@@ -23,9 +23,10 @@
             </button>
             <div class="collapse navbar-collapse" id="menu-principal">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">@Html.ActionLink("Inicio", "Index", "Home", null, new {@class="nav-link active", href = "#inicio" })</li>
-                    <li class="nav-item">@Html.ActionLink("Acerca de", "Index", "Home", null, new {@class="nav-link", href = "#acercade" })</li>
-                    <li class="nav-item">@Html.ActionLink("Tipos de casa", "Index", "Home", null, new {@class="nav-link", href = "#micasa" })</li>
+                    <li class="nav-item">@Html.ActionLink("Inicio", "Index", "Home", null, new { @class = "nav-link active" })</li>
+                    <li class="nav-item">@Html.ActionLink("Acerca de", "Index", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Tipos de casa", "Index", "Home", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Contacto", "Contact", "Home", null, new { @class = "nav-link" })</li>
                 </ul>
             </div>
         </div>
@@ -53,7 +54,7 @@
                 //var cadPass = "Nombre=" + a + "&Correo=" + b;
                 //var cadPass = JSON.stringify({ Nombre: a, Correo: b });
                 $.post({
-                    url: "HomeController.cs/Index",
+                    url: "Home/cargarRegistros",
                     //data: '{Nombre: "' + $("#nombre").val() + '", Apellido: "' + $("#apellido").val() + '"}',
                     //data: cadPass,
                     //data: JSON.stringify(cadPass),
@@ -61,13 +62,13 @@
                     //contentType: "text/ html; charset = utf - 8",
                     //contentType: "application/json; charset=utf-8",
                     //dataType: "json",
-                    dataType: "xml"
+                    dataType: "html"
                 }).done(function (msg) {
-                    //$("#mostrar").html(msg.d);
-                    //console.log(msg);
-                    var datos = msg.getElementsByTagName("string")[0].firstChild.data;
-                    $("#iddatosCasa").html(datos);
+                    $("#iddatosCasa").html(msg);
                     console.log(msg);
+                    //var datos = msg.getElementsByTagName("string")[0].firstChild.data;
+                    //$("#iddatosCasa").html(datos);
+                    //console.log(msg);
                 }).fail(manejarErrorAjax).always(function () {
                 });
             });
@@ -75,28 +76,28 @@
                 console.log(err.responseText);
             }
         })
-        ////Forma 3
-        //var respuesta = document.getElementById("iddatosCasa");
-        //function cargarReg() {
-        //    var xmlhttp;
-        //    if (window.XMLHttpRequest) {
-        //        xmlhttp = new XMLHttpRequest();
-        //    } else {
-        //        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        //    }
-        //    xmlhttp.onreadystatechange = function () {
-        //        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-        //            var datos = xmlhttp.responseXML;
-        //            var tablaDat = datos.getElementsByTagName("string")[0].firstChild.data;
-        //            respuesta.innerHTML = tablaDat;
-        //            console.log(xmlhttp);
-        //        }
-        //    }
-        //    xmlhttp.open("POST", "WebService1.asmx/cargarRegistros", true);
-        //    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
-        //    //xmlhttp.setRequestHeader("Content-type", "application/json; charset=utf-8")
-        //    xmlhttp.send();
-        //}
+            ////Forma 3
+            //var respuesta = document.getElementById("iddatosCasa");
+            //function cargarReg() {
+            //    var xmlhttp;
+            //    if (window.XMLHttpRequest) {
+            //        xmlhttp = new XMLHttpRequest();
+            //    } else {
+            //        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            //    }
+            //    xmlhttp.onreadystatechange = function () {
+            //        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            //            //var datos = xmlhttp.responseXML;
+            //            //var tablaDat = datos.getElementsByTagName("string")[0].firstChild.data;
+            //            respuesta.innerHTML = xmlhttp;
+            //            console.log(xmlhttp);
+            //        }
+            //    }
+            //    xmlhttp.open("POST", "Home/cargarRegistros", true);
+            //    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+            //    //xmlhttp.setRequestHeader("Content-type", "application/json; charset=utf-8")
+            //    xmlhttp.send();
+            //}
     </script>
 </body>
 </html>
